@@ -7,7 +7,7 @@ pipeline {
            def jarName = "SystemEventsService.jar"
            echo "JAR NAME  ${jarName}"
            
-          
+          sh 'pwd'
            
            rtServer (
                  id: 'LocalArtifactory',
