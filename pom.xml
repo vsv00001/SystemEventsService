@@ -80,5 +80,13 @@
 			</plugin>
 		</plugins>
 	</build>
-
+    <distributionManagement>
+		<repository>
+			<id>local</id>
+			<name>dummy-releases</name>
+			<url>http://localhost:8081/artifactory/phoenix-local-repo</url>
+		</repository>
+	
+	</distributionManagement>
+	
 </project>
