@@ -7,7 +7,7 @@ pipeline {
            def jarName = "SystemEventsService.jar"
            echo "JAR NAME  ${jarName}"
            
-           sh 'mvn --version'
+          
            
            rtServer (
                  id: 'LocalArtifactory',
@@ -24,7 +24,7 @@ pipeline {
                   """{
                     "files": [
                       {
-                        "pattern": "build/*myapp*.jar",
+                        "pattern": "targets/**.jar",
                         "target": "phoenix-local-repo/"
                       }
                    ]
