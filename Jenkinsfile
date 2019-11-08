@@ -8,6 +8,7 @@ pipeline {
            echo "JAR NAME  ${jarName}"
            
           sh 'pwd'
+          sh "mvn -version"
            
            rtServer (
                  id: 'LocalArtifactory',
