@@ -7,6 +7,9 @@ pipeline {
            def jarName = "SystemEventsService.jar"
            echo "JAR NAME  ${jarName}"
            
+          def gitbranch = "$GIT_BRANCH"
+          echo "${gitbranch}"
+           
           sh 'pwd'
 
            rtServer (
