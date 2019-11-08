@@ -7,6 +7,8 @@ pipeline {
            def jarName = "SystemEventsService.jar"
            echo "JAR NAME  ${jarName}"
            
+           sh 'mvn --version'
+           
            rtServer (
                  id: 'LocalArtifactory',
                  url: 'http://localhost:8081/artifactory',
