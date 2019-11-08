@@ -3,7 +3,9 @@ pipeline {
  stages {
         stage('Push to arfifactory') { 
          agent {
-           docker 'maven:3.6.1-jdk-8'
+          docker {
+           image 'maven:3.6.1-jdk-8'
+          }
          }
          
          steps {
