@@ -5,7 +5,7 @@ pipeline {
          steps {
           script {
            def jarName = "SystemEventsService.jar"
-           echo 'JAR NAME  ${jarName}"
+           echo "JAR NAME  ${jarName}"
            
            rtServer (
                  id: 'LocalArtifactory',
