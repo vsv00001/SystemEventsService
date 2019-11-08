@@ -25,7 +25,7 @@ pipeline {
                     "files": [
                       {
                         "pattern": "targets/*SystemEventsService-1.jar",
-                        "target": "phoenix-local-repo/"
+                        "target": "example-repo-local"
                       }
                    ]
                   }"""
