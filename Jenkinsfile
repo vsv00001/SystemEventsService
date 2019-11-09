@@ -1,11 +1,7 @@
 pipeline {
  agent any
  
- environment {
-PROJECT_NAME = 'phoenix-common'
-// BUILD_VERSION - can we get this
-PROJECT_REPO = 'phoenix-repo-local'
-}
+ 
  
  stages {
         stage('Push to arfifactory') { 
@@ -35,7 +31,7 @@ PROJECT_REPO = 'phoenix-repo-local'
                     "files": [
                       {
                         "pattern": "target/*SystemEventsService-1.jar",
-                        "target": "${repo}/${PROJECT_REPO}"
+                        "target": "example-repo-local/${repo}"
                       }
                    ]
                   }"""
