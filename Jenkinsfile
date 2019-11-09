@@ -13,7 +13,7 @@ pipeline {
           echo "${gitbranch}"
            
           sh 'pwd'
-
+          sh 'ls -lrt'
            
            
            rtUpload (
