@@ -14,12 +14,12 @@ pipeline {
           echo "${gitbranch}"
            
           if(gitbranch == “origin/master”) {
-           env = “staging”
-           repo = “phoenix-lib-release”
+           env = 'staging'
+           repo = 'phoenix-lib-release'
 
                } else {
-            env = “development”
-                repo = “phoenix-lib-snapshot”
+            env = 'development'
+                repo = 'phoenix-lib-snapshot'
            }
  
            rtUpload (
