@@ -12,16 +12,7 @@ pipeline {
            
           def gitbranch = "$GIT_BRANCH"
           echo "${gitbranch}"
-           
-          if(gitbranch == “origin/master”) {
-           env = 'staging'
-           repo = 'phoenix-lib-release'
-
-               } else {
-            env = 'development'
-                repo = 'phoenix-lib-snapshot'
-           }
- 
+   
            rtUpload (
               serverId: "MyArtifactory",
               spec:
@@ -29,7 +20,7 @@ pipeline {
                     "files": [
                       {
                         "pattern": "target/*SystemEventsService-1.jar",
-                        "target": "example-repo-local/${repo}"
+                        "target": "example-repo-local/"
                       }
                    ]
                   }"""
