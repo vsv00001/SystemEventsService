@@ -2,12 +2,12 @@ pipeline {
  agent any
  
  environment {
-  RELEASE_REPO = “phoenix-lib-release"
-  SNAPSHOT_REPO = “phoenix-lib-snapshot”
-  PROJECT_NAME = “phoenix-common”	  
- // BUILD_VERSION - can we get this
-  PROJECT_REPO = “phoenix-repo-local” 
- }
+RELEASE_REPO = “phoenix-lib-release"
+SNAPSHOT_REPO = “phoenix-lib-snapshot”
+PROJECT_NAME = “phoenix-common”
+// BUILD_VERSION - can we get this
+PROJECT_REPO = “phoenix-repo-local”
+}
  
  stages {
         stage('Push to arfifactory') { 
