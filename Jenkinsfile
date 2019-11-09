@@ -2,11 +2,7 @@ pipeline {
  agent any
  stages {
         stage('Push to arfifactory') { 
-         agent {
-          docker {
-           image 'maven:3.6.1-jdk-8'
-          }
-         }
+         
          
          steps {
           script {
@@ -18,23 +14,16 @@ pipeline {
            
           sh 'pwd'
 
-           rtServer (
-                 id: 'LocalArtifactory',
-                 url: 'http://localhost:8081/artifactory',
-                 // If you're using username and password:
-                 username: 'admin',
-                 password: 'password'
-                
-             )
+           
            
            rtUpload (
-              serverId: "LocalArtifactory",
+              serverId: "MyArtifactory",
               spec:
                   """{
                     "files": [
                       {
                         "pattern": "targets/*SystemEventsService-1.jar",
-                        "target": "example-repo-local/branch/"
+                        "target": "example-repo-local/"
                       }
                    ]
                   }"""
