@@ -1,5 +1,14 @@
 pipeline {
  agent any
+ 
+ environment {
+  RELEASE_REPO = “phoenix-lib-release"
+ SNAPSHOT_REPO = “phoenix-lib-snapshot”
+ PROJECT_NAME = “phoenix-common”	  
+ // BUILD_VERSION - can we get this
+ PROJECT_REPO = “phoenix-repo-local” 
+ }
+ 
  stages {
         stage('Push to arfifactory') { 
          
@@ -12,10 +21,15 @@ pipeline {
           def gitbranch = "$GIT_BRANCH"
           echo "${gitbranch}"
            
-          sh 'pwd'
-          sh 'ls -lrt'
-           
-           
+          if(gitbranch == “origin/master”) {
+           env = “staging”
+           repo = “${RELEASE_REPO}”
+
+               } else {
+            env = “development”
+                repo = “${SNAPSHOT_REPO}”
+           }
+ 
            rtUpload (
               serverId: "MyArtifactory",
               spec:
@@ -23,7 +37,7 @@ pipeline {
                     "files": [
                       {
                         "pattern": "target/*SystemEventsService-1.jar",
-                        "target": "example-repo-local/"
+                        "target": "${repo}/${PROJECT_REPO}"
                       }
                    ]
                   }"""
