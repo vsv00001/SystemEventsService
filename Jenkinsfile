@@ -1,5 +1,9 @@
 pipeline {
- agent any
+ agent {
+  docker {
+            image 'maven:3-alpine'
+        }
+ }
  
  stages {
         stage('Push to arfifactory') { 
@@ -12,7 +16,9 @@ pipeline {
            
           def gitbranch = "$GIT_BRANCH"
           echo "${gitbranch}"
-   
+    
+           sh 'mvn -version'
+           
            rtUpload (
               serverId: "MyArtifactory",
               spec:
