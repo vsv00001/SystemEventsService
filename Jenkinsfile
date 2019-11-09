@@ -22,7 +22,7 @@ pipeline {
                   """{
                     "files": [
                       {
-                        "pattern": "targets/*SystemEventsService-1.jar",
+                        "pattern": "target/*SystemEventsService-1.jar",
                         "target": "example-repo-local/"
                       }
                    ]
