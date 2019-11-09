@@ -2,8 +2,6 @@ pipeline {
  agent any
  
  environment {
-RELEASE_REPO = 'phoenix-lib-release'
-SNAPSHOT_REPO = 'phoenix-lib-snapshot'
 PROJECT_NAME = 'phoenix-common'
 // BUILD_VERSION - can we get this
 PROJECT_REPO = 'phoenix-repo-local'
@@ -23,11 +21,11 @@ PROJECT_REPO = 'phoenix-repo-local'
            
           if(gitbranch == “origin/master”) {
            env = “staging”
-           repo = “${RELEASE_REPO}”
+           repo = “phoenix-lib-release”
 
                } else {
             env = “development”
-                repo = “${SNAPSHOT_REPO}”
+                repo = “phoenix-lib-snapshot”
            }
  
            rtUpload (
