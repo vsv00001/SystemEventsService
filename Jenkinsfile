@@ -22,7 +22,7 @@ agent any
                     "files": [
                       {
                         "pattern": "target/*SystemEventsService-1.jar",
-                        "target": "example-repo-local/"
+                        "target": "phoenix-local/"
                       }
                    ]
                   }"""
