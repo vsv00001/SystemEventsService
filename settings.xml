@@ -2,7 +2,12 @@
 
 	<servers>
 		<server>
-			<id>phoenix-local</id>
+			<id>central</id>
+			<username>admin</username>
+			<password>password</password>
+		</server>
+		<server>
+			<id>snapshots</id>
 			<username>admin</username>
 			<password>password</password>
 		</server>
