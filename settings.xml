@@ -2,7 +2,7 @@
 
 	<servers>
 		<server>
-			<id>phoenix-local-repo</id>
+			<id>phoenix-local</id>
 			<username>admin</username>
 			<password>password</password>
 		</server>
