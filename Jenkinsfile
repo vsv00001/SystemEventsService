@@ -1,5 +1,5 @@
 pipeline {
-
+agent any
  
  stages {
         stage('Push to arfifactory') { 
