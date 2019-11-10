@@ -13,7 +13,7 @@ agent any
           def gitbranch = "$GIT_BRANCH"
           echo "${gitbranch}"
     
-           sh 'mvn -version'
+           sh 'mvn clean install'
            
            rtUpload (
               serverId: "MyArtifactory",
