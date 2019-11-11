@@ -37,8 +37,8 @@ agent any
            def image =  readMavenPom().getArtifactId()
            def version = readMavenPom().getVersion()
            
-           echo "${image}"
-           echo "${version}"
+           echo "image ${image}"
+           echo "version ${version}"
            
            // change the jar and pom names
            
