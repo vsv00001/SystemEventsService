@@ -51,7 +51,7 @@ agent any
                     "files": [
                       {
                         "pattern": "target/*SystemEventsService-1.jar",
-                        "target": "phoenix/${repo}/${dirName}"
+                        "target": "phoenix/${repo}/${dirName}/"
                       }
                    ]
                   }"""
