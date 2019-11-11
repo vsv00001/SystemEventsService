@@ -47,7 +47,8 @@ agent any
            // change the jar and pom names
            def jarName = "${image}"+"-"+"${dateformat.format(dt)}"+"-"+"${buildNum}"+".jar"
             echo "JAR NAME  ${jarName}"
-
+        
+           sh 'mv target/**SystemEventsService-1.jar ${jarName}'
            
            rtUpload (
               serverId: "MyArtifactory",
