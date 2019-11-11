@@ -61,6 +61,7 @@ agent any
                buildNumber: "${buildNum}"
               )
            
+           // this will fail as the pom structure does not match the directory structure being created in local artifactory
            rtUpload (
                        serverId: "MyArtifactory",
                        spec:
