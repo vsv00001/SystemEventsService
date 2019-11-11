@@ -12,8 +12,16 @@ agent any
            
           def gitbranch = "$GIT_BRANCH"
           echo "${gitbranch}"
-    
-           bat 'mvn clean install'
+          def buildNum = "$BUILD_NUMBER"
+           echo "${buildNum}"
+           def buildID = "$BUILD_ID"
+           echo "${buildID}"
+           def wkspace = "$WORKSPACE"
+           echo "${wkspace}"
+           def buildTag = "$BUILD_TAG"
+           echo "${buildTag}"
+           
+           sh 'mvn clean install'
            
            rtUpload (
               serverId: "MyArtifactory",
