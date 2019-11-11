@@ -61,6 +61,19 @@ agent any
                buildNumber: "${buildNum}"
               )
            
+           rtUpload (
+                       serverId: "MyArtifactory",
+                       spec:
+                               """{
+               "files": [
+                 {
+                   "pattern": "pom.xml",
+                   "target": "phoenix/${repo}/${dirName}/${version}/${jarName}.pom"
+                 }
+              ]
+             }"""
+               )
+           
           }
          }
         }
