@@ -11,7 +11,7 @@ agent any
           def release_repo = 'phoenix-libs-release'
           def snapshot_repo ='phoenix-snapshot-release'
            
-          def dirName ='/com/comcast/phoenix/mongo-index-builder"
+          def dirName ='/com/comcast/phoenix/mongo-index-builder'
            
           def gitbranch = "$GIT_BRANCH"
           echo "${gitbranch}"
