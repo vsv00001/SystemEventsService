@@ -22,7 +22,7 @@ agent any
            echo "buildTag ${buildTag}"
            def projName = "$PROJECT_NAME"
            echo "proj Name ${projName}"
-          // sh 'mvn clean install'
+           sh 'mvn clean install'
            
            
            rtUpload (
