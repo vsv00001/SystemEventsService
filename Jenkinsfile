@@ -45,7 +45,7 @@ agent any
            def jarName = "${image}"+"-"+"${dateformat.format(dt)}"+"-"+"${buildNum}"+".jar"
             echo "JAR NAME  ${jarName}"
         
-           sh 'mv target/*SystemEventsService*.jar target/"${jarName}" '
+          // sh 'mv target/*SystemEventsService*.jar target/"${jarName}" '
            
            rtUpload (
               serverId: "MyArtifactory",
@@ -57,7 +57,8 @@ agent any
                         "target": "phoenix/${repo}/${dirName}/${version}/"
                       }
                    ]
-                  }"""
+                  }""",
+               buildNumber: "${buildNum}"
               )
            
           }
