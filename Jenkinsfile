@@ -13,13 +13,13 @@ agent any
           def gitbranch = "$GIT_BRANCH"
           echo "${gitbranch}"
           def buildNum = "$BUILD_NUMBER"
-           echo "${buildNum}"
+           echo "build Number ${buildNum}"
            def buildID = "$BUILD_ID"
-           echo "${buildID}"
+           echo "buildId ${buildID}"
            def wkspace = "$WORKSPACE"
-           echo "${wkspace}"
+           echo "workspace ${wkspace}"
            def buildTag = "$BUILD_TAG"
-           echo "${buildTag}"
+           echo "buildTag ${buildTag}"
            
            sh 'mvn clean install'
            
