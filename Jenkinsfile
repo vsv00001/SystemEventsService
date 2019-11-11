@@ -6,8 +6,6 @@ agent any
  
          steps {
           script {
-          def jarName = "SystemEventsService.jar"
-          echo "JAR NAME  ${jarName}"
           def release_repo = 'phoenix-libs-release'
           def snapshot_repo ='phoenix-snapshot-release'
            
@@ -46,7 +44,8 @@ agent any
            
            // change the jar and pom names
            def jarName = ${image}+"-"+${dateformat.format(dt)}+"-"+"${buildNum}"+".jar"
-           echo " ${jarName}"
+            echo "JAR NAME  ${jarName}"
+
            
            rtUpload (
               serverId: "MyArtifactory",
