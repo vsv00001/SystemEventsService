@@ -6,9 +6,12 @@ agent any
  
          steps {
           script {
-           def jarName = "SystemEventsService.jar"
-           echo "JAR NAME  ${jarName}"
-          
+          def jarName = "SystemEventsService.jar"
+          echo "JAR NAME  ${jarName}"
+          def release_repo = 'phoenix-libs-release'
+          def snapshot_repo ='phoenix-snapshot-release'
+           
+          def dirName ='/com/comcast/phoenix/mongo-index-builder"
            
           def gitbranch = "$GIT_BRANCH"
           echo "${gitbranch}"
@@ -19,9 +22,23 @@ agent any
            def wkspace = "$WORKSPACE"
            echo "workspace ${wkspace}"
            
-           echo " currentBuild $currentBuild.projectName -- $currentBuild.displayName "
-          
-           sh 'mvn clean install'
+          // sh 'mvn clean install'
+           def env =''
+           
+           if(gitbranch == 'origin/master') {
+            env = 'staging'
+            repo= "${release_repo}"
+            
+           } else {
+            env = 'development'
+            repo ="${snapshot_repo}"           
+           }
+           
+           pom = readMavenPom file: 'pom.xml'
+           echo "${pom.version}"
+           
+           // change the jar and pom names
+           
            
            
            rtUpload (
@@ -31,7 +48,7 @@ agent any
                     "files": [
                       {
                         "pattern": "target/*SystemEventsService-1.jar",
-                        "target": "example-repo-local/"
+                        "target": "phoenix/${repo}/${dirName}"
                       }
                    ]
                   }"""
