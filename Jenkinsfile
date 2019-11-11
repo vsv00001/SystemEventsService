@@ -19,7 +19,7 @@ agent any
            def wkspace = "$WORKSPACE"
            echo "workspace ${wkspace}"
            
-           echo " currentBuild $currentBuild "
+           echo " currentBuild $currentBuild.projectName "
           
            sh 'mvn clean install'
            
