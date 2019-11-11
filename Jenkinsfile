@@ -34,8 +34,11 @@ agent any
             repo ="${snapshot_repo}"           
            }
            
-           pom = readMavenPom file: 'pom.xml'
-           echo "${pom.version}"
+           def image =  readMavenPom().getArtifactId()
+           def version = readMavenPom().getVersion()
+           
+           echo "${image}"
+           echo "${version}"
            
            // change the jar and pom names
            
