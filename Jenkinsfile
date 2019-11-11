@@ -45,7 +45,7 @@ agent any
            echo "date format ${dateformat.format(dt)}"
            
            // change the jar and pom names
-           def jarName = ${image}+"-"+${dateformat.format(dt)+"-"${buildNum}"+".jar"
+           def jarName = ${image}+"-"+${dateformat.format(dt)}+"-"${buildNum}"+".jar"
            echo " ${jarName}"
            
            rtUpload (
