@@ -18,10 +18,9 @@ agent any
            echo "buildId ${buildID}"
            def wkspace = "$WORKSPACE"
            echo "workspace ${wkspace}"
-           def buildTag = "$BUILD_TAG"
-           echo "buildTag ${buildTag}"
-           def projName = "$PROJECT_NAME"
-           echo "proj Name ${projName}"
+           
+           echo " currentBuild $currentBuild "
+          
            sh 'mvn clean install'
            
            
