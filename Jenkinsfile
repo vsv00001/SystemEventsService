@@ -40,9 +40,13 @@ agent any
            echo "image ${image}"
            echo "version ${version}"
            
+           def dt = new Date()
+           def dateformat =  new SimpleDateFormat("yyyyMMdd.HHmmss")
+           echo "date format ${dateformat.format(dt)}"
+           
            // change the jar and pom names
-           
-           
+           def jarName = ${image}+"-"+${dateformat.format(dt)+"-"${buildNum}"+".jar"
+           echo " ${jarName}"
            
            rtUpload (
               serverId: "MyArtifactory",
@@ -51,7 +55,7 @@ agent any
                     "files": [
                       {
                         "pattern": "target/*SystemEventsService-1.jar",
-                        "target": "phoenix/${repo}/${dirName}/"
+                        "target": "phoenix/${repo}/${dirName}/${version}/"
                       }
                    ]
                   }"""
