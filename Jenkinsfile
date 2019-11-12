@@ -8,8 +8,8 @@ agent any
  
          steps {
           script {
-          def release_repo = 'phoenix-libs-release'
-          def snapshot_repo ='phoenix-snapshot-release'
+          def release_repo = 'reactor-libs-release'
+          def snapshot_repo ='reactor-libs-snapshots'
            
           def dirName ='/com/example/SystemEventsService'
            
@@ -57,17 +57,18 @@ agent any
           sh 'ls -ltr target'
           
           sh 'sudo chown -Rv jenkins target' 
-          // sh 'mv target/*SystemEventsService*.jar target/"${jarName}" '
-           sh "mv target/*SystemEventsService*.jar ${jarName}.jar "
+         //  sh 'mv target/*SystemEventsService*.jar target/"${jarName}" '
+         //  sh "mv target/*SystemEventsService*.jar ${jarName}.jar "
            
+           //   "target": "phoenix/${dirName}/${version}/"
            rtUpload (
               serverId: "MyArtifactory",
               spec:
                   """{
                     "files": [
                       {
-                        "pattern": "target/"${jarName}".jar",
-                        "target": "phoenix/${dirName}/${version}/"
+                        "pattern": "target/*SystemEvents*.jar",
+                        "target": "${repo}/${dirName}/${version}/"
                       }
                    ]
                   }""",
