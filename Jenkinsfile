@@ -63,7 +63,7 @@ agent any
                   """{
                     "files": [
                       {
-                        "pattern": "target/*SystemEventsService-1.jar",
+                        "pattern": "target/'${jarName}'.jar",
                         "target": "phoenix/${dirName}/${version}/"
                       }
                    ]
