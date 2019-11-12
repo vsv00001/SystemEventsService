@@ -21,28 +21,37 @@ agent any
            
           // sh 'mvn clean install'
            def env =''
-           
-           if(gitbranch == 'origin/master') {
-            env = 'staging'
-            repo= "${release_repo}"
-            
-           } else {
-            env = 'development'
-            repo ="${snapshot_repo}"           
-           }
-           
            def image =  readMavenPom().getArtifactId()
            def version = readMavenPom().getVersion()
            
            echo "image ${image}"
            echo "version ${version}"
            
+           def verName = ''
+           def jarName =''
+           
            def dt = new Date()
            def dateformat =  new SimpleDateFormat("yyyyMMdd.HHmmss")
            echo "date format ${dateformat.format(dt)}"
            
+           if(gitbranch == 'origin/master') {
+            env = 'staging'
+            repo= "${release_repo}"
+            jarName = "${image}"+"-"+"${version}"+"-"+"${dateformat.format(dt)}"+"-"+"${buildNum}"
+           } else {
+            env = 'development'
+            repo ="${snapshot_repo}"     
+            verName = version.split("SNAPSHOT")
+            jarName = "${image}"+"-"+"${verName[0]}"+"-"+"${dateformat.format(dt)}"+"-"+"${buildNum}"
+           }
+           
+            echo "JAR NAME  ${jarName}"
+           
+           
+           
            // change the jar and pom names
-           def jarName = "${image}"+"-"+"${dateformat.format(dt)}"+"-"+"${buildNum}"
+           
+         //  def jarName = "${image}"+"-"+"${dateformat.format(dt)}"+"-"+"${buildNum}"
             echo "JAR NAME  ${jarName}"
         
           // sh 'mv target/*SystemEventsService*.jar target/"${jarName}" '
