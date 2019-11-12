@@ -63,7 +63,7 @@ agent any
                   """{
                     "files": [
                       {
-                        "pattern": "target/'${jarName}'.jar",
+                        "pattern": "target/"${jarName}".jar",
                         "target": "phoenix/${dirName}/${version}/"
                       }
                    ]
