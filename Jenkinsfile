@@ -53,7 +53,9 @@ agent any
            
          //  def jarName = "${image}"+"-"+"${dateformat.format(dt)}"+"-"+"${buildNum}"
             echo "JAR NAME  ${jarName}"
-        
+          
+          sh 'ls -ltr'
+           
           // sh 'mv target/*SystemEventsService*.jar target/"${jarName}" '
            sh "mv target/*SystemEventsService*.jar ${jarName}.jar "
            
