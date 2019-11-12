@@ -1,29 +1,51 @@
+import java.text.SimpleDateFormat
+
 pipeline {
- agent {
-    label 'docker' 
-  }
+agent any
  
  stages {
         stage('Push to arfifactory') { 
-         
-         agent {
-          docker {
-            // Set both label and image
-            label 'docker'
-            image 'node:7-alpine'
-            args '--name docker-node' // list any args
-          }
-        }
-         
+ 
          steps {
           script {
-           def jarName = "SystemEventsService.jar"
-           echo "JAR NAME  ${jarName}"
+          def release_repo = 'phoenix-libs-release'
+          def snapshot_repo ='phoenix-snapshot-release'
+           
+          def dirName ='/com/comcast/phoenix/mongo-index-builder'
            
           def gitbranch = "$GIT_BRANCH"
           echo "${gitbranch}"
-    
-           sh 'mvn -version'
+          def buildNum = "$BUILD_NUMBER"
+           echo "build Number ${buildNum}"
+          
+           
+          // sh 'mvn clean install'
+           def env =''
+           
+           if(gitbranch == 'origin/master') {
+            env = 'staging'
+            repo= "${release_repo}"
+            
+           } else {
+            env = 'development'
+            repo ="${snapshot_repo}"           
+           }
+           
+           def image =  readMavenPom().getArtifactId()
+           def version = readMavenPom().getVersion()
+           
+           echo "image ${image}"
+           echo "version ${version}"
+           
+           def dt = new Date()
+           def dateformat =  new SimpleDateFormat("yyyyMMdd.HHmmss")
+           echo "date format ${dateformat.format(dt)}"
+           
+           // change the jar and pom names
+           def jarName = "${image}"+"-"+"${dateformat.format(dt)}"+"-"+"${buildNum}"
+            echo "JAR NAME  ${jarName}"
+        
+          // sh 'mv target/*SystemEventsService*.jar target/"${jarName}" '
            
            rtUpload (
               serverId: "MyArtifactory",
@@ -32,11 +54,26 @@ pipeline {
                     "files": [
                       {
                         "pattern": "target/*SystemEventsService-1.jar",
-                        "target": "example-repo-local/"
+                        "target": "phoenix/${repo}/${dirName}/${version}/"
                       }
                    ]
-                  }"""
+                  }""",
+               buildNumber: "${buildNum}"
               )
+           
+           // this will fail as the pom structure does not match the directory structure being created in local artifactory
+           rtUpload (
+                       serverId: "MyArtifactory",
+                       spec:
+                               """{
+               "files": [
+                 {
+                   "pattern": "pom.xml",
+                   "target": "phoenix/${repo}/${dirName}/${version}/${jarName}.pom"
+                 }
+              ]
+             }"""
+               )
            
           }
          }
