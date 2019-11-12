@@ -56,7 +56,7 @@ agent any
           sh 'ls -ltr'
           sh 'ls -ltr target'
           
-          sh 'sudo chown -Rv jenkins target' 
+         // sh 'sudo chown -Rv jenkins target' 
          //  sh 'mv target/*SystemEventsService*.jar target/"${jarName}" '
          //  sh "mv target/*SystemEventsService*.jar ${jarName}.jar "
            
