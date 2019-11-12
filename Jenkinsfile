@@ -55,6 +55,7 @@ agent any
             echo "JAR NAME  ${jarName}"
         
           // sh 'mv target/*SystemEventsService*.jar target/"${jarName}" '
+           sh 'cp target/*SystemEventsService*.jar target/"${jarName}".jar
            
            rtUpload (
               serverId: "MyArtifactory",
