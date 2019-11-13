@@ -23,8 +23,8 @@ agent any
            def env =''
            def image =  readMavenPom().getArtifactId()
           // def version = readMavenPom().getVersion()
-           echo "${POM_VERSION}"
-           def version = 'sh mvn help:evaluate -Dexpression=project.version -q -DforceStdout'
+           def version = "$POM_VERSION"
+          // def version = 'sh mvn help:evaluate -Dexpression=project.version -q -DforceStdout'
            
            
            echo "image ${image}"
