@@ -22,7 +22,8 @@ agent any
           // sh 'mvn clean install'
            def env =''
            def image =  readMavenPom().getArtifactId()
-           def version = readMavenPom().getVersion()
+          // def version = readMavenPom().getVersion()
+           def version =$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
            
            echo "image ${image}"
            echo "version ${version}"
