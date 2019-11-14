@@ -4,9 +4,57 @@ pipeline {
 agent any
  
  stages {
+  
+    https://github.com/jfrog/project-examples/blob/master/jenkins-examples/pipeline-examples/declarative-examples/maven-example/Jenkinsfile
+     
+     stage ('Artifactory configuration') {
+            steps {
+             /*
+                rtServer (
+                    id: "MyArtifactory",
+                    url: 'http://localhost:8081/artifactory',
+                    credentialsId: CREDENTIALS
+                ) */
+
+                rtMavenDeployer (
+                    id: "MAVEN_DEPLOYER",
+                    serverId: "MyArtifactory",
+                    releaseRepo: "reactor-libs-release",
+                    snapshotRepo: "reactor-libs-snapshot"
+                )
+
+                rtMavenResolver (
+                    id: "MAVEN_RESOLVER",
+                    serverId: "MyArtifactory",
+                    releaseRepo: "reactor-libs-release",
+                    snapshotRepo: "reactor-libs-snapshot"
+                )
+            }
+        }
+
+     stage ('Exec Maven') {
+            steps {
+                rtMavenRun (
+                    tool: MAVEN_TOOL, // Tool name from Jenkins configuration
+                    pom: 'pom.xml',
+                    goals: 'clean install',
+                    deployerId: "MAVEN_DEPLOYER",
+                    resolverId: "MAVEN_RESOLVER"
+                )
+            }
+        }
+
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "MyArtifactory"
+                )
+            }
+   
+         /*
         stage('Push to arfifactory') { 
  
-         steps {
+c         steps {
           script {
           def release_repo = 'reactor-libs-release'
           def snapshot_repo ='reactor-libs-snapshots'
@@ -93,6 +141,6 @@ agent any
            
           }
          }
-        }
+        } */
  }
 }
