@@ -5,8 +5,7 @@ agent any
  
  stages {
   
-    https://github.com/jfrog/project-examples/blob/master/jenkins-examples/pipeline-examples/declarative-examples/maven-example/Jenkinsfile
-     
+       
      stage ('Artifactory configuration') {
             steps {
              /*
