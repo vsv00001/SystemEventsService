@@ -35,7 +35,7 @@ agent any
      stage ('Exec Maven') {
             steps {
                 rtMavenRun (
-                    tool: 'mymaven', // Tool name from Jenkins configuration
+                    tool: 'maven-3.6.0', // Tool name from Jenkins configuration
                     pom: 'pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
