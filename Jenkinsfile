@@ -35,7 +35,7 @@ agent any
      stage ('Exec Maven') {
             steps {
                 rtMavenRun (
-                    tool: maven, // Tool name from Jenkins configuration
+                    tool: 'mymaven', // Tool name from Jenkins configuration
                     pom: 'pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
@@ -54,7 +54,7 @@ agent any
          /*
         stage('Push to arfifactory') { 
  
-c         steps {
+         steps {
           script {
           def release_repo = 'reactor-libs-release'
           def snapshot_repo ='reactor-libs-snapshots'
