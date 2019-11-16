@@ -5,9 +5,16 @@ agent any
  
  stages {
   
+  agent {
+   agent {
+           docker 'maven:3.6.1-jdk-8'
+         }
+  
        
      stage ('Artifactory configuration') {
             steps {
+              sh 'mvn -version'
+             
              /*
                 rtServer (
                     id: "MyArtifactory",
