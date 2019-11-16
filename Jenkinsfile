@@ -5,7 +5,7 @@ agent any
  
  stages {
   
-  agent {
+  
    agent {
            docker 'maven:3.6.1-jdk-8'
          }
