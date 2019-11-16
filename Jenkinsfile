@@ -4,14 +4,12 @@ pipeline {
 agent any
  
  stages {
-  
-  
-   agent {
-           docker 'maven:3.6.1-jdk-8'
-         }
-  
        
      stage ('Artifactory configuration') {
+        agent {
+           docker 'maven:3.6.1-jdk-8'
+         }
+      
             steps {
               sh 'mvn -version'
              
