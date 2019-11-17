@@ -4,7 +4,7 @@ pipeline {
 agent any
  
  environment {
-  MAVEN_HOME = 'C:\apache-maven-3.6.2\bin' 
+  MAVEN_HOME = '/usr/local/Cellar/maven/3.6.2/libexec'
  }
  stages {
        
@@ -14,7 +14,7 @@ agent any
          } */
       
             steps {
-              bat 'mvn -version'
+              sh 'mvn -version'
              
              /*
                 rtServer (
