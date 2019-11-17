@@ -3,6 +3,9 @@ import java.text.SimpleDateFormat
 pipeline {
 agent any
  
+ environment {
+  MAVEN_HOME = 'C:\apache-maven-3.6.2\bin' 
+ }
  stages {
        
      stage ('Artifactory configuration') {
