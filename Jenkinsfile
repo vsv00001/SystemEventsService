@@ -14,6 +14,8 @@ agent any
          } */
       
             steps {
+             script {
+             
               sh 'mvn -version'
              
              /*
@@ -48,6 +50,7 @@ agent any
                rtPublishBuildInfo (
                     serverId: "MyArtifactory"
                 )
+             }
             }
         }
 
