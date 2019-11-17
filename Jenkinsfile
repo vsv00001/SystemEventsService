@@ -6,12 +6,12 @@ agent any
  stages {
        
      stage ('Artifactory configuration') {
-        agent {
+       /* agent {
            docker 'maven:3.6.1-jdk-8'
-         }
+         } */
       
             steps {
-              sh 'mvn -version'
+              bat 'mvn -version'
              
              /*
                 rtServer (
@@ -33,27 +33,24 @@ agent any
                     releaseRepo: "reactor-libs-release",
                     snapshotRepo: "reactor-libs-snapshot"
                 )
-            }
-        }
-
-     stage ('Exec Maven') {
-            steps {
-                rtMavenRun (
+             
+                  rtMavenRun (
                     tool: 'mymaven', // Tool name from Jenkins configuration
                     pom: 'pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
                     resolverId: "MAVEN_RESOLVER"
                 )
-            }
-        }
-
-        stage ('Publish build info') {
-            steps {
-                rtPublishBuildInfo (
+             
+               rtPublishBuildInfo (
                     serverId: "MyArtifactory"
                 )
             }
+        }
+
+    
+
+        
    
          /*
         stage('Push to arfifactory') { 
@@ -146,6 +143,6 @@ agent any
           }
          }
         } */
- }
+ 
 }
 }
