@@ -96,7 +96,7 @@
 	
 	<repositories>
     <repository>
-        <id>central local</id>
+        <id>local</id>
         <url>http://localhost:8081/artifactory/example-repo-local</url>
         <snapshots>
             <enabled>false</enabled>
